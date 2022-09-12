@@ -16,9 +16,10 @@
 		15DAB8CB28CF364900105BD9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8CA28CF364900105BD9 /* InfoViewController.swift */; };
 		15DAB8CD28CF36B600105BD9 /* ImgCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8CC28CF36B600105BD9 /* ImgCacheManager.swift */; };
 		15DAB8CF28CF36E200105BD9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8CE28CF36E200105BD9 /* Storage.swift */; };
-		15DAB8D128CF370F00105BD9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8D028CF370F00105BD9 /* Request.swift */; };
+		15DAB8D128CF370F00105BD9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8D028CF370F00105BD9 /* WeatherService.swift */; };
 		15DAB8D528CF377500105BD9 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8D428CF377500105BD9 /* CountryTableViewCell.swift */; };
-		15DAB8D728CF381100105BD9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8D628CF381100105BD9 /* Model.swift */; };
+		15DAB8D728CF381100105BD9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8D628CF381100105BD9 /* WeatherModel.swift */; };
+		15DAB8DD28CF6A2F00105BD9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DAB8DC28CF6A2F00105BD9 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +34,10 @@
 		15DAB8CA28CF364900105BD9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		15DAB8CC28CF36B600105BD9 /* ImgCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgCacheManager.swift; sourceTree = "<group>"; };
 		15DAB8CE28CF36E200105BD9 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		15DAB8D028CF370F00105BD9 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		15DAB8D028CF370F00105BD9 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		15DAB8D428CF377500105BD9 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
-		15DAB8D628CF381100105BD9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		15DAB8D628CF381100105BD9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		15DAB8DC28CF6A2F00105BD9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,19 +72,52 @@
 			children = (
 				15DAB8B628CF362600105BD9 /* AppDelegate.swift */,
 				15DAB8B828CF362600105BD9 /* SceneDelegate.swift */,
-				15DAB8BA28CF362600105BD9 /* ViewController.swift */,
-				15DAB8CC28CF36B600105BD9 /* ImgCacheManager.swift */,
-				15DAB8CE28CF36E200105BD9 /* Storage.swift */,
-				15DAB8D028CF370F00105BD9 /* Request.swift */,
-				15DAB8D428CF377500105BD9 /* CountryTableViewCell.swift */,
-				15DAB8CA28CF364900105BD9 /* InfoViewController.swift */,
-				15DAB8D628CF381100105BD9 /* Model.swift */,
-				15DAB8BC28CF362600105BD9 /* Main.storyboard */,
+				15DAB8DB28CF44CC00105BD9 /* Resource */,
+				15DAB8DA28CF44AA00105BD9 /* Model */,
+				15DAB8D928CF446F00105BD9 /* Service */,
+				15DAB8D828CF445C00105BD9 /* Controller */,
 				15DAB8BF28CF362700105BD9 /* Assets.xcassets */,
 				15DAB8C128CF362700105BD9 /* LaunchScreen.storyboard */,
+				15DAB8BC28CF362600105BD9 /* Main.storyboard */,
 				15DAB8C428CF362700105BD9 /* Info.plist */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		15DAB8D828CF445C00105BD9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				15DAB8DC28CF6A2F00105BD9 /* LoadingViewController.swift */,
+				15DAB8BA28CF362600105BD9 /* ViewController.swift */,
+				15DAB8D428CF377500105BD9 /* CountryTableViewCell.swift */,
+				15DAB8CA28CF364900105BD9 /* InfoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		15DAB8D928CF446F00105BD9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				15DAB8D028CF370F00105BD9 /* WeatherService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		15DAB8DA28CF44AA00105BD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15DAB8D628CF381100105BD9 /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15DAB8DB28CF44CC00105BD9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				15DAB8CE28CF36E200105BD9 /* Storage.swift */,
+				15DAB8CC28CF36B600105BD9 /* ImgCacheManager.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,13 +191,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15DAB8D728CF381100105BD9 /* Model.swift in Sources */,
+				15DAB8D728CF381100105BD9 /* WeatherModel.swift in Sources */,
 				15DAB8BB28CF362600105BD9 /* ViewController.swift in Sources */,
 				15DAB8B728CF362600105BD9 /* AppDelegate.swift in Sources */,
 				15DAB8CB28CF364900105BD9 /* InfoViewController.swift in Sources */,
 				15DAB8B928CF362600105BD9 /* SceneDelegate.swift in Sources */,
 				15DAB8D528CF377500105BD9 /* CountryTableViewCell.swift in Sources */,
-				15DAB8D128CF370F00105BD9 /* Request.swift in Sources */,
+				15DAB8D128CF370F00105BD9 /* WeatherService.swift in Sources */,
+				15DAB8DD28CF6A2F00105BD9 /* LoadingViewController.swift in Sources */,
 				15DAB8CD28CF36B600105BD9 /* ImgCacheManager.swift in Sources */,
 				15DAB8CF28CF36E200105BD9 /* Storage.swift in Sources */,
 			);
