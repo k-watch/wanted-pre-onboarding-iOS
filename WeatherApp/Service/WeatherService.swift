@@ -7,13 +7,15 @@
 
 import Foundation
 
-var  cities: [String: String] = ["Gongju": "공주", "Gwangju": "광주", "Gumi": "구미", "Gunsan": "군산", "Daegu": "대구", "Daejeon": "대전", "Mokpo": "목포", "Busan": "부산", "Seosan City": "서산", "Seoul": "서울", "Sokcho": "속초", "Suwon-si": "수원", "Suncheon": "순천", "Ulsan": "울산", "Iksan": "익산", "Jeonju": "전주", "Jeju City": "제주", "Cheonan": "천안", "Cheongju-si": "청주", "Chuncheon": "춘천"]
-var reqCities: [String] = ["Gongju", "Gwangju", "Gumi", "Gunsan", "Daegu", "Daejeon", "Mokpo", "Busan", "Seosan", "Seoul", "Sokcho", "Suwon", "Suncheon", "Ulsan", "Iksan", "Jeonju", "Jeju", "Cheonan", "Cheongju", "Chuncheon"]
+let  cities: [String: String] = ["Gongju": "공주", "Gwangju": "광주", "Gumi": "구미", "Gunsan": "군산", "Daegu": "대구", "Daejeon": "대전", "Mokpo": "목포", "Busan": "부산", "Seosan City": "서산", "Seoul": "서울", "Sokcho": "속초", "Suwon-si": "수원", "Suncheon": "순천", "Ulsan": "울산", "Iksan": "익산", "Jeonju": "전주", "Jeju City": "제주", "Cheonan": "천안", "Cheongju-si": "청주", "Chuncheon": "춘천"]
+
 var weathers: [WeatherModel] = []
 
 let DidRecvWeathersNoti: Notification.Name = Notification.Name("DidRecvWeathers")
 
 func reqWeather() {
+    let reqCities: [String] = ["Gongju", "Gwangju", "Gumi", "Gunsan", "Daegu", "Daejeon", "Mokpo", "Busan", "Seosan", "Seoul", "Sokcho", "Suwon", "Suncheon", "Ulsan", "Iksan", "Jeonju", "Jeju", "Cheonan", "Cheongju", "Chuncheon"]
+    
     for city in reqCities {
         guard let url: URL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + Storage().apiKey + "&lang=kr") else {return}
         
@@ -31,6 +33,7 @@ func reqWeather() {
                 apiRes.name = cities[apiRes.name]!
                 weathers.append(apiRes)
                 
+                // 모든 데이터 요청 완료 후 도시 이름으로 정렬
                 if weathers.count == cities.count {
                     weathers = weathers.sorted(by: {$0.name < $1.name})
                     NotificationCenter.default.post(name: DidRecvWeathersNoti, object: nil, userInfo: ["weathers": weathers])

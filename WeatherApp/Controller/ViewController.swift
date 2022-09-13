@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cacheKey = NSString(string: weather.weather[0].iconImg)
         
+        // 이미지 캐시 저장
         if let cachedImg = ImgCacheManager.shared.object(forKey: cacheKey) {
             cell.imgView.image = cachedImg
             cell.setNeedsLayout()
@@ -76,14 +77,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        // Animate loadingVC over the existing views on screen
         self.loading.modalPresentationStyle = .overCurrentContext
-        
-        // Animate loadingVC with a fade in animation
         self.loading.modalTransitionStyle = .crossDissolve
         
+        // 데이터 요청 전 로딩뷰 생성
         present(self.loading, animated: true, completion: nil)
         reqWeather()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didRecvWeathersNoti(_:)), name: DidRecvWeathersNoti, object: nil)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -96,17 +100,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let row: Int = self.tableView.indexPathForSelectedRow?.row as? Int else { return }
         nextViewController.selectIndex = row
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didRecvWeathersNoti(_:)), name: DidRecvWeathersNoti, object: nil)
-    }
-    
+
     @objc func didRecvWeathersNoti(_ noti: Notification) {
         guard let weathers: [WeatherModel] = noti.userInfo?["weathers"] as? [WeatherModel] else { return }
         
         self.weathers = weathers
         
+        // 데이터 요청 완료 후 로딩뷰 해제
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.loading.dismiss(animated: true)

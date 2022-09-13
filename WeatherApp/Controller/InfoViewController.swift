@@ -37,9 +37,7 @@ class InfoViewController: UIViewController {
                 guard let imageData: Data = try? Data(contentsOf: imageURL) else { return }
                 
                 DispatchQueue.main.async {
-                    
                     if let image: UIImage = UIImage(data: imageData) {
-                        
                         ImgCacheManager.shared.setObject(image, forKey: cacheKey)
                         self.weatherImg.image = image
                     }
